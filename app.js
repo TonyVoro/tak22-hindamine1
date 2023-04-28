@@ -1,24 +1,28 @@
-const heading = document.getElementsByTagName('h1')[0];
-const catsContainer = document.getElementById('container');
+newFunction();
 
-heading.innerText = 'Tony and cat breeds';
+function newFunction() {
+    const heading = document.getElementsByTagName('h1')[0];
+    const catsContainer = document.getElementById('container');
 
-fetch('https://catfact.ninja/breeds?limit=100')
-.then(res => res.json())
-.then(cats => {
+    heading.innerText = 'Tony and cat breeds';
 
-    cats.data.forEach( cat => {
+    fetch('https://catfact.ninja/breeds?limit=100')
+        .then(res => res.json())
+        .then(cats => {
 
-        const catDiv = document.createElement('div');
+            cats.data.forEach(cat => {
 
-        catDiv.classList.add('cat');
+                const catDiv = document.createElement('div');
 
-        catDiv.innerHTML = `
-            <div>${cat.breed}</div>
+                catDiv.classList.add('cat');
+
+                catDiv.innerHTML = `
+            <div>${cat.breed.bold()}</div>
             <div>${cat.country}</div>
         `;
 
-        catsContainer.append(catDiv);
-       
-    });
-});
+                catsContainer.append(catDiv);
+
+            });
+        });
+}
